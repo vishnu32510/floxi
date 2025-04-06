@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:floxi/view_model/camera_view_model.dart';
 import 'package:flutter/material.dart';
 
-class CameraScreen extends StatelessWidget {
+class CameraScreen extends StatefulWidget {
   final File image;
   static const String routeName = '/camera';
 
@@ -14,6 +14,13 @@ class CameraScreen extends StatelessWidget {
       builder: (context) => CameraScreen(image: cameraScreen.image),
     );
   }
+
+  @override
+  State<CameraScreen> createState() => _CameraScreenState();
+}
+
+class _CameraScreenState extends State<CameraScreen> {
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class CameraScreen extends StatelessWidget {
                 border: Border.all(color: Colors.grey, width: 2),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Image.file(image),
+              child: isLoading?CircularProgressIndicator.adaptive():Image.file(widget.image),
             ),
             SizedBox(height: 20),
             Row(
@@ -46,8 +53,14 @@ class CameraScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 30),
                 IconButton(
-                  onPressed: () {
-                    CameraViewModel().sendImage(image:image, context:context);
+                  onPressed: () async{
+                    setState(() {
+                      isLoading = true;
+                    });
+                    await CameraViewModel().sendImage(image:widget.image, context:context);
+                    setState(() {
+                      isLoading = false;
+                    });
                   },
                   color: Colors.green,
 

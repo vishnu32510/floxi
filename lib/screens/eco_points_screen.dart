@@ -19,7 +19,8 @@ class WalletScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      body: Padding(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: Column(
           children: [
@@ -48,7 +49,7 @@ class WalletScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-
+        
             // Bar Chart
             Align(
               alignment: Alignment.centerLeft,
@@ -57,9 +58,45 @@ class WalletScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const SizedBox(height: 180, child: MonthlyBarChart()),
             const SizedBox(height: 20),
+            SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Past Earned EcoPoints",
+                      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 20),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Pridicted EcoPoints",
+                      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            const SizedBox(height: 20),
+        
             Align(
               alignment: Alignment.centerLeft,
-              child: Text("Categories", style: Theme.of(context).textTheme.titleMedium),
+              child: Text("Ways to offset your Carbon emission", style: Theme.of(context).textTheme.titleMedium),
             ),
             const SizedBox(height: 12),
             Expanded(
@@ -132,7 +169,7 @@ class MonthlyBarChart extends StatelessWidget {
               width: 25,
               borderRadius: BorderRadius.circular(5),
               gradient: LinearGradient(
-                colors: [Colors.green.shade800, Colors.green.shade400],
+                colors: i == values.length - 1?[Colors.orange.shade800, Colors.orange.shade400]:[Colors.green.shade800, Colors.green.shade400],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
               ),
@@ -164,7 +201,7 @@ class MonthlyBarChart extends StatelessWidget {
             sideTitles: SideTitles(
               showTitles: true,
               getTitlesWidget: (double value, _) {
-                final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+                final months = ['Dec','Jan', 'Feb', 'Mar', 'Apr', 'May',];
                 return Text(months[value.toInt() % months.length]);
               },
             ),
@@ -174,7 +211,7 @@ class MonthlyBarChart extends StatelessWidget {
           topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         ),
         borderData: FlBorderData(show: false),
-        barGroups: generateBarChartData([20, 400, 60, 80, 100, 120]),
+        barGroups: generateBarChartData([300, 300, 300, 500, 200, 350]),
       ),
     );
   }

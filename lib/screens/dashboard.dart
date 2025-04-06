@@ -36,6 +36,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int _currentIndex = 0;
   DashboardModel? dashboardModel;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -93,7 +94,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      floatingActionButton: SpeedDial(
+      floatingActionButton:isLoading?CircularProgressIndicator.adaptive(): SpeedDial(
         icon: Icons.add,
         activeIcon: Icons.close,
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -133,8 +134,14 @@ class _DashboardState extends State<Dashboard> {
               print(res);
 
               if (res != null) {
+                setState(() {
+                  isLoading = true;
+                });
                 var response = await DashboardViewModel().getBarCodeData(barcode: res);
-                showCustomBottomSheet(context, response);
+                await showCustomBottomSheet(context, response);
+                setState(() {
+                  isLoading = false;
+                });
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Scan Failed')));
               }
@@ -234,11 +241,13 @@ class _DashboardState extends State<Dashboard> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.network(
-                            barCodeModel.imageUrl ?? "", // Replace with your product image URL
-                            height: 50,
-                            width: 50,
-                            fit: BoxFit.cover,
+                          ClipOval(
+                            child: Image.network(
+                              barCodeModel.imageUrl ?? "", // Replace with your product image URL
+                              height: 50,
+                              width: 50,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           SizedBox(width: 16),
                           Column(
@@ -289,7 +298,7 @@ class _DashboardState extends State<Dashboard> {
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    'Impac Map',
+                    'Impact Map',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
