@@ -53,6 +53,12 @@ Icon getTransactionIcon(String transactionModelType) {
       return Icon(Icons.local_grocery_store, color: Colors.green);
     case 'travel':
       return Icon(Icons.train, color: Colors.blue);
+    case 'food':
+      return Icon(Icons.fastfood, color: Colors.red);
+    case 'donation':
+      return Icon(Icons.favorite, color: Colors.pink);
+    case 'bike':
+      return Icon(Icons.directions_bike, color: Colors.orange);
     default:
       return Icon(Icons.help_outline, color: Colors.grey);
   }

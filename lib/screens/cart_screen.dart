@@ -7,27 +7,27 @@ class CartTab extends StatelessWidget {
   final List<Map<String, dynamic>> miniApps = [
     {
       'label': 'Too Good To Go',
-      'description': '🪙 100 per \$1',
+      'description': '🪙 50 per \$1',
       'route': 'https://play.google.com/store/apps/details?id=com.app.tgtg',
       'image': 'assets/images/tgtg.png',
     },
     {
       'label': 'Ventra',
-      'description': '🪙 50 per \$5',
+      'description': '🪙 12 per \$5',
       'route': 'https://www.ventrachicago.com/',
       'image': 'assets/images/ventra.png',
       
     },
     {
       'label': 'Missfits Market',
-      'description': '🪙 200 per \$10',
+      'description': '🪙 Earn full points per item',
       'route': 'https://www.misfitsmarket.com/?srsltid=AfmBOoqZTjl4BOtZEJsQQ3OO8CB7Aeoy2yJ029HoP2WQvKEr7FZJ_5ay',
       'image': 'assets/images/missfits.png',
       
     },
     {
       'label': 'Divvy',
-      'description': '🪙 3000 per \$1',
+      'description': '🪙 30 per \$1',
       'route': 'https://divvybikes.com/',
       'image': 'assets/images/divvy.png',
       

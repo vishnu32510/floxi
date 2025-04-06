@@ -60,7 +60,7 @@ class _DashboardState extends State<Dashboard> {
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
 
-          child: ClipOval(child: Image.asset('assets/icons/floxi_icon.jpeg')),
+          child: ClipOval(child: Image.asset('assets/icons/floxi_logo.jpeg')),
         ),
         title: Text('Floxi'),
         elevation: 2,
@@ -472,7 +472,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                "*Earn EcoPoints by reducing your carbon footprint",
+                "Earn EcoPoints by reducing your carbon footprint",
                 style: TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.bold,
@@ -504,7 +504,7 @@ class HomeScreen extends StatelessWidget {
                       contentPadding: EdgeInsets.symmetric(vertical: 8.0),
                       leading: getTransactionIcon(transactionModel.type ?? ""),
                       title: Text(
-                        transactionModel.type?.capitalizeFirst() ?? "",
+                        transactionModel.title?.capitalizeFirst() ?? "",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       subtitle: Column(
@@ -519,7 +519,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            "*${transactionModel.suggestion ?? ""}",
+                            "${transactionModel.suggestion ?? ""}",
                             style: TextStyle(fontSize: 12.0, color: Colors.grey[400]),
                           ),
                         ],

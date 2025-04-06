@@ -32,7 +32,6 @@ class CameraViewModel {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Failed to upload image.')));
-      Navigator.pop(context);
     }
   }
 }
